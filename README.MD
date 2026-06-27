@@ -32,11 +32,11 @@ github-profile search YOUR_USERNAME
 
 ## Features
 
-- ✅ Colored terminal output
-- ✅ Loading spinner
-- ✅ Caching (1 hour — no wasted API calls)
-- ✅ Graceful error handling
-- ✅ Unit tested
+- Colored terminal output
+- Loading spinner
+-  Caching (1 hour — no wasted API calls)
+-  Graceful error handling
+-  Unit tested
 
 ## GitHub API Rate Limits
 
