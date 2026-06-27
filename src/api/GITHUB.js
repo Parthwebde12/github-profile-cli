@@ -2,29 +2,28 @@
 
 const axios = require('axios');
 
-const BASE_URL = '';
+const BASE_URL = 'https://api.github.com';
+async function fetchUser(username) {
+  try {
+    const response = await axios.get(`${BASE_URL}/users/${username}`, {
+      headers: { 'Accept': 'application/vnd.github.v3+json' },
+      timeout: 10000,
+    });
+    return response.data;
 
-// async function fetchUser(username) {
-//   try {
-//     const response = await axios.get(`${BASE_URL}/users/${username}`, {
-//       headers: { 'Accept': 'application/vnd.github.v3+json' },
-//       timeout: 10000,
-//     });
-//     return response.data;
-
-//   } catch (error) {
-//     if (error.response) {
-//       if (error.response.status === 404) {
-//         throw new Error(`User "${username}" not found on GitHub.`);
-//       }
-//       if (error.response.status === 403) {
-//         throw new Error('GitHub API rate limit exceeded. Wait a few minutes and try again.');
-//       }
-//       throw new Error(`GitHub API error: ${error.response.status}`);
-//     }
-//     throw new Error(`Network error: ${error.message}`);
-//   }
-// }
+  } catch (error) {
+    if (error.response) {
+      if (error.response.status === 404) {
+        throw new Error(`User "${username}" not found on GitHub.`);
+      }
+      if (error.response.status === 403) {
+        throw new Error('GitHub API rate limit exceeded. Wait a few minutes and try again.');
+      }
+      throw new Error(`GitHub API error: ${error.response.status}`);
+    }
+    throw new Error(`Network error: ${error.message}`);
+  }
+}
 
 async function fetchRepos(username) {
   try {
@@ -40,4 +39,4 @@ async function fetchRepos(username) {
   }
 }
 
-module.exports = { fetchRepos };
+module.exports = { fetchRepos, fetchUser };
